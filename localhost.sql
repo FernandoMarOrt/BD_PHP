@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 31-10-2023 a las 10:17:32
+-- Tiempo de generación: 21-11-2023 a las 10:18:01
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.1.17
 
@@ -18,109 +18,55 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `bd_teoria`
+-- Base de datos: `bd_videoclub`
 --
-CREATE DATABASE IF NOT EXISTS `bd_teoria` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
-USE `bd_teoria`;
+CREATE DATABASE IF NOT EXISTS `bd_videoclub` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_spanish_ci;
+USE `bd_videoclub`;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `t_alumnos`
+-- Estructura de tabla para la tabla `peliculas`
 --
 
-CREATE TABLE `t_alumnos` (
-  `cod_alu` int(11) NOT NULL,
-  `nombre` varchar(15) NOT NULL,
-  `telefono` int(11) NOT NULL,
-  `cp` int(11) NOT NULL
+CREATE TABLE `peliculas` (
+  `idPelicula` int(11) NOT NULL,
+  `titulo` varchar(15) NOT NULL,
+  `director` varchar(20) NOT NULL,
+  `sinopsis` text NOT NULL,
+  `tematica` varchar(15) NOT NULL,
+  `caratula` varchar(30) NOT NULL DEFAULT 'no_imagen.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
 --
--- Volcado de datos para la tabla `t_alumnos`
+-- Volcado de datos para la tabla `peliculas`
 --
 
-INSERT INTO `t_alumnos` (`cod_alu`, `nombre`, `telefono`, `cp`) VALUES
-(100, 'CRISTOBAL', 967123456, 29611),
-(101, 'MARIA', 967123456, 29611),
-(102, 'JOSE', 967123456, 29611);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `t_asignaturas`
---
-
-CREATE TABLE `t_asignaturas` (
-  `cod_asig` int(11) NOT NULL,
-  `denominacion` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `t_asignaturas`
---
-
-INSERT INTO `t_asignaturas` (`cod_asig`, `denominacion`) VALUES
-(1, 'MATEMATICAS'),
-(2, 'LENGUA');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `t_notas`
---
-
-CREATE TABLE `t_notas` (
-  `cod_alu` int(11) NOT NULL,
-  `cod_asig` int(11) NOT NULL,
-  `nota` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
-
---
--- Volcado de datos para la tabla `t_notas`
---
-
-INSERT INTO `t_notas` (`cod_alu`, `cod_asig`, `nota`) VALUES
-(100, 1, 4),
-(100, 2, 5),
-(101, 1, 8),
-(101, 2, 9),
-(102, 1, 3),
-(102, 2, 2);
+INSERT INTO `peliculas` (`idPelicula`, `titulo`, `director`, `sinopsis`, `tematica`, `caratula`) VALUES
+(1, 'Inventado1', 'Inventado1', 'Inventado1Inventado1Inventado1Inventado1Inventado1Inventado1Inventado1Inventado1Inventado1Inventado1Inventado1Inventado1', 'Inventado1', 'no_imagen.jpg'),
+(2, 'Inventado2', 'Inventado2', 'Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2Inventado2', 'Inventado2', 'no_imagen.jpg'),
+(3, 'Inventado3', 'Inventado3', 'Inventado3Inventado3Inventado3Inventado3Inventado3Inventado3Inventado3Inventado3Inventado3Inventado3Inventado3Inventado3Inventado3Inventado3Inventado3', 'Inventado3', 'no_imagen.jpg'),
+(4, 'Inventado4', 'Inventado4', 'Inventado4Inventado4Inventado4Inventado4Inventado4Inventado4Inventado4Inventado4Inventado4Inventado4Inventado4Inventado4Inventado4Inventado4Inventado4', 'Inventado4', 'no_imagen.jpg');
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `t_alumnos`
+-- Indices de la tabla `peliculas`
 --
-ALTER TABLE `t_alumnos`
-  ADD PRIMARY KEY (`cod_alu`);
+ALTER TABLE `peliculas`
+  ADD PRIMARY KEY (`idPelicula`);
 
 --
--- Indices de la tabla `t_asignaturas`
---
-ALTER TABLE `t_asignaturas`
-  ADD PRIMARY KEY (`cod_asig`);
-
---
--- Indices de la tabla `t_notas`
---
-ALTER TABLE `t_notas`
-  ADD PRIMARY KEY (`cod_alu`,`cod_asig`),
-  ADD KEY `cod_asig` (`cod_asig`);
-
---
--- Restricciones para tablas volcadas
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- Filtros para la tabla `t_notas`
+-- AUTO_INCREMENT de la tabla `peliculas`
 --
-ALTER TABLE `t_notas`
-  ADD CONSTRAINT `t_notas_ibfk_1` FOREIGN KEY (`cod_alu`) REFERENCES `t_alumnos` (`cod_alu`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  ADD CONSTRAINT `t_notas_ibfk_2` FOREIGN KEY (`cod_asig`) REFERENCES `t_asignaturas` (`cod_asig`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ALTER TABLE `peliculas`
+  MODIFY `idPelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
